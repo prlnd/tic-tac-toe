@@ -21,7 +21,8 @@ public:
     Marker get(int row, int col);
     Marker move(int row, int col);
     GameStatus checkBoard();
-    Marker getPlayerMarker();
+    Marker getLastPlayerMarker();
+    Marker getNextPlayerMarker();
     
 private:
     Marker board[Board::SIZE][Board::SIZE];

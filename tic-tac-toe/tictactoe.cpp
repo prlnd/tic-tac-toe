@@ -22,14 +22,19 @@ TicTacToe::Marker TicTacToe::move(int row, int col)
 
     ++this->round;
     this->player = !this->player;
-    position = getPlayerMarker();
+    position = getLastPlayerMarker();
 
     return position;
 }
 
-TicTacToe::Marker TicTacToe::getPlayerMarker()
+TicTacToe::Marker TicTacToe::getLastPlayerMarker()
 {
     return this->player ? Marker::X : Marker::O;
+}
+
+TicTacToe::Marker TicTacToe::getNextPlayerMarker()
+{
+    return this->player ? Marker::O : Marker::X;
 }
 
 TicTacToe::GameStatus TicTacToe::checkBoard()

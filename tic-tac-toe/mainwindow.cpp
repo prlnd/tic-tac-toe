@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QThread>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,8 +29,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->labelX->setText(QString(static_cast<char>(TicTacToe::Marker::X)));
     ui->labelO->setText(QString(static_cast<char>(TicTacToe::Marker::O)));
-    ui->lcdScoreX->display(0);
-    ui->lcdScoreO->display(0);
+    ui->labelScoreX->setText("0");
+    ui->labelScoreO->setText("0");
+    ui->labelTurn->setText("");
 
     start();
 }
@@ -46,10 +48,13 @@ void MainWindow::move(QPushButton *pb, int row, int col)
     if (marker == TicTacToe::Marker::BLANK)
         return;
 
+    auto turn = ttt->getNextPlayerMarker();
     pb->setText(QString(static_cast<char>(marker)));
     auto status = ttt->checkBoard();
     if (status != TicTacToe::GameStatus::CONTINUES)
         finish(status);
+    else
+        ui->labelTurn->setText(QString(static_cast<char>(turn)));
 }
 
 void MainWindow::start()
@@ -57,30 +62,42 @@ void MainWindow::start()
     delete ttt;
     ttt = new TicTacToe;
     const auto n = TicTacToe::Board::SIZE;
+
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
             auto marker = static_cast<char>(ttt->get(i, j));
             pushButtons[i][j]->setText(QString(marker));
         }
     }
+
+    auto turn = ttt->getNextPlayerMarker();
+    ui->labelTurn->setText(QString(static_cast<char>(turn)));
 }
 
 void MainWindow::finish(TicTacToe::GameStatus status)
 {
     if (status == TicTacToe::GameStatus::WON) {
-        auto marker = ttt->getPlayerMarker();
+        auto marker = ttt->getLastPlayerMarker();
         setScore(marker == TicTacToe::Marker::X
-                 ? ui->lcdScoreX
-                 : ui->lcdScoreO);
+                 ? ui->labelScoreX
+                 : ui->labelScoreO);
+    } else {
+        ui->labelTurn->setText("");
     }
+
     this->repaint();
-    QThread::sleep(1);
+    QThread::msleep(1000);
     start();
 }
 
-void MainWindow::setScore(QLCDNumber *lcdScore)
+void MainWindow::setScore(QLabel *labelScore)
 {
-    auto score = lcdScore->intValue();
-    lcdScore->display(++score);
+    bool ok;
+    auto score = labelScore->text().toInt(&ok);
+    if (ok) {
+        labelScore->setText(QString::number(++score));
+    } else {
+        throw std::invalid_argument("setScore: number conversion failed");
+    }
 }
 

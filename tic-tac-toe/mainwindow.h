@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QPushButton>
-#include <QLCDNumber>
+#include <QLabel>
 #include "tictactoe.h"
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +26,6 @@ private:
     void move(QPushButton *pb, int row, int col);
     void start();
     void finish(TicTacToe::GameStatus status);
-    void setScore(QLCDNumber *lcdScore);
+    void setScore(QLabel *labelScore);
 };
 #endif // MAINWINDOW_H
