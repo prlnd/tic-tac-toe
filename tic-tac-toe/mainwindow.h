@@ -19,7 +19,7 @@ public:
     ~MainWindow();
 
 private:
-    TicTacToe *ttt = nullptr;
+    TicTacToe ttt;
     QPushButton *pushButtons[TicTacToe::Board::SIZE][TicTacToe::Board::SIZE];
 
     Ui::MainWindow *ui;
@@ -27,5 +27,8 @@ private:
     void start();
     void finish(TicTacToe::GameStatus status);
     void setScore(QLabel *labelScore);
+    void resetPushButtons();
+    void setCrossBold();
+    void highlightPlayer(TicTacToe::Icon icon);
 };
 #endif // MAINWINDOW_H

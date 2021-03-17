@@ -11,23 +11,25 @@ public:
         AREA = SIZE * SIZE,
         MINROUNDS = SIZE * 2 - 1
     };
-    enum class Marker : char {
+    enum class Icon : char {
         BLANK = ' ', X = 'X', O = 'O'
     };
     enum class GameStatus {
         CONTINUES, DRAW, WON
     };
 
-    Marker get(int row, int col);
-    Marker move(int row, int col);
+    Icon get(int row, int col);
+    Icon move(int row, int col);
     GameStatus checkBoard();
-    Marker getLastPlayerMarker();
-    Marker getNextPlayerMarker();
+    Icon getLastPlayerIcon();
+    Icon getNextPlayerIcon();
+    const int (*getCross())[2];
     
 private:
-    Marker board[Board::SIZE][Board::SIZE];
+    Icon board[Board::SIZE][Board::SIZE];
     int round;
     bool player;
+    int cross[Board::SIZE][2];
 
     bool isCrossedHorizontally(int row);
     bool isCrossedVertically(int col);

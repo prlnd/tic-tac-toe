@@ -1,40 +1,47 @@
 #include "tictactoe.h"
-#include <QPushButton>
-#include <algorithm>
+#include <array>
 
 TicTacToe::TicTacToe() : round(0), player(false)
 {
     for (auto &row : this->board) {
-        std::fill(std::begin(row), std::end(row), Marker::BLANK);
+        std::fill(std::begin(row), std::end(row), Icon::BLANK);
+    }
+    for (auto &row : this->cross) {
+        std::fill(std::begin(row), std::end(row), -1);
     }
 }
 
-TicTacToe::Marker TicTacToe::get(int row, int col)
+TicTacToe::Icon TicTacToe::get(int row, int col)
 {
     return this->board[row][col];
 }
 
-TicTacToe::Marker TicTacToe::move(int row, int col)
+TicTacToe::Icon TicTacToe::move(int row, int col)
 {
-    auto &position = this->board[row][col];
-    if (position != Marker::BLANK)
-        return Marker::BLANK;
+    auto &position {this->board[row][col]};
+    if (position != Icon::BLANK)
+        return Icon::BLANK;
 
     ++this->round;
     this->player = !this->player;
-    position = getLastPlayerMarker();
+    position = getLastPlayerIcon();
 
     return position;
 }
 
-TicTacToe::Marker TicTacToe::getLastPlayerMarker()
+TicTacToe::Icon TicTacToe::getLastPlayerIcon()
 {
-    return this->player ? Marker::X : Marker::O;
+    return this->player ? Icon::X : Icon::O;
 }
 
-TicTacToe::Marker TicTacToe::getNextPlayerMarker()
+TicTacToe::Icon TicTacToe::getNextPlayerIcon()
 {
-    return this->player ? Marker::O : Marker::X;
+    return this->player ? Icon::O : Icon::X;
+}
+
+const int (*TicTacToe::getCross())[2]
+{
+    return this->cross;
 }
 
 TicTacToe::GameStatus TicTacToe::checkBoard()
@@ -42,7 +49,7 @@ TicTacToe::GameStatus TicTacToe::checkBoard()
     if (this->round < this->MINROUNDS)
         return GameStatus::CONTINUES;
 
-    for (int i = 0; i < this->Board::SIZE; ++i) {
+    for (int i {0}; i < this->Board::SIZE; ++i) {
         if (isCrossedHorizontally(i) || isCrossedVertically(i))
             return GameStatus::WON;
     }
@@ -57,12 +64,17 @@ TicTacToe::GameStatus TicTacToe::checkBoard()
 
 bool TicTacToe::isCrossedHorizontally(int row)
 {
-    if (this->board[row][0] == Marker::BLANK)
+    if (this->board[row][0] == Icon::BLANK)
         return false;
 
-    for (int i = 0; i < this->Board::SIZE - 1; ++i) {
+    for (int i {0}; i < this->Board::SIZE - 1; ++i) {
         if (this->board[row][i] != this->board[row][i + 1])
             return false;
+    }
+
+    for (int i {0}; i < this->Board::SIZE; ++i) {
+        this->cross[i][0] = row;
+        this->cross[i][1] = i;
     }
 
     return true;
@@ -70,12 +82,17 @@ bool TicTacToe::isCrossedHorizontally(int row)
 
 bool TicTacToe::isCrossedVertically(int col)
 {
-    if (this->board[0][col] == Marker::BLANK)
+    if (this->board[0][col] == Icon::BLANK)
         return false;
 
-    for (int i = 0; i < this->Board::SIZE - 1; ++i) {
+    for (int i {0}; i < this->Board::SIZE - 1; ++i) {
         if (this->board[i][col] != this->board[i + 1][col])
             return false;
+    }
+
+    for (int i {0}; i < this->Board::SIZE; ++i) {
+        this->cross[i][0] = i;
+        this->cross[i][1] = col;
     }
 
     return true;
@@ -83,12 +100,17 @@ bool TicTacToe::isCrossedVertically(int col)
 
 bool TicTacToe::isCrossedDiagonally()
 {
-    if (this->board[0][0] == Marker::BLANK)
+    if (this->board[0][0] == Icon::BLANK)
         return false;
 
-    for (int i = 0; i < this->Board::SIZE - 1; ++i) {
+    for (int i {0}; i < this->Board::SIZE - 1; ++i) {
         if (this->board[i][i] != this->board[i + 1][i + 1])
             return false;
+    }
+
+    for (int i {0}; i < this->Board::SIZE; ++i) {
+        this->cross[i][0] = i;
+        this->cross[i][1] = i;
     }
 
     return true;
@@ -98,12 +120,17 @@ bool TicTacToe::isCrossedAntidiagonally()
 {
     const int n {this->Board::SIZE - 1};
 
-    if (this->board[0][n] == Marker::BLANK)
+    if (this->board[0][n] == Icon::BLANK)
         return false;
 
-    for (int i = 0; i < n; ++i) {
+    for (int i {0}; i < n; ++i) {
         if (this->board[i][n - i] != this->board[i + 1][n - i - 1])
             return false;
+    }
+
+    for (int i {0}; i < this->Board::SIZE; ++i) {
+        this->cross[i][0] = i;
+        this->cross[i][1] = n - i;
     }
 
     return true;

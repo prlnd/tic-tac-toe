@@ -6,15 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>332</width>
-    <height>384</height>
+    <width>291</width>
+    <height>301</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>322</width>
-    <height>0</height>
-   </size>
   </property>
   <property name="palette">
    <palette>
@@ -468,15 +462,15 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>311</width>
-      <height>355</height>
+      <x>20</x>
+      <y>0</y>
+      <width>251</width>
+      <height>281</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <property name="spacing">
-      <number>10</number>
+      <number>0</number>
      </property>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -488,12 +482,15 @@
        </property>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLabel" name="labelX">
            <property name="font">
             <font>
-             <family>MS Shell Dlg 2</family>
-             <pointsize>18</pointsize>
+             <family>Gill Sans MT</family>
+             <pointsize>12</pointsize>
              <weight>50</weight>
              <bold>false</bold>
              <kerning>true</kerning>
@@ -514,15 +511,15 @@
           <widget class="QLabel" name="labelScoreX">
            <property name="font">
             <font>
-             <family>MS Shell Dlg 2</family>
-             <pointsize>18</pointsize>
+             <family>Calibri</family>
+             <pointsize>12</pointsize>
              <weight>50</weight>
              <bold>false</bold>
              <kerning>true</kerning>
             </font>
            </property>
            <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>6</string>
@@ -535,39 +532,36 @@
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="labelTurn">
-           <property name="font">
-            <font>
-             <pointsize>18</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Turn</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Maximum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>80</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLabel" name="labelScoreO">
            <property name="font">
             <font>
-             <family>MS Shell Dlg 2</family>
-             <pointsize>18</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-             <kerning>true</kerning>
+             <family>Calibri</family>
+             <pointsize>12</pointsize>
             </font>
            </property>
            <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
+            <enum>QFrame::NoFrame</enum>
            </property>
            <property name="text">
             <string>9</string>
@@ -581,8 +575,8 @@
           <widget class="QLabel" name="labelO">
            <property name="font">
             <font>
-             <family>MS Shell Dlg 2</family>
-             <pointsize>18</pointsize>
+             <family>Gill Sans MT</family>
+             <pointsize>12</pointsize>
              <weight>50</weight>
              <bold>false</bold>
              <kerning>true</kerning>
@@ -608,46 +602,7 @@
        <property name="spacing">
         <number>0</number>
        </property>
-       <item row="6" column="3">
-        <widget class="Line" name="line_4">
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="lineWidth">
-          <number>3</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="3">
-        <widget class="Line" name="line_5">
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="lineWidth">
-          <number>3</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
-        <widget class="Line" name="line_8">
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="lineWidth">
-          <number>3</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="6">
+       <item row="4" column="7">
         <widget class="QPushButton" name="pushButton_1_2">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -657,19 +612,20 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>72</pointsize>
+           <family>Gill Sans MT</family>
+           <pointsize>62</pointsize>
           </font>
          </property>
          <property name="text">
@@ -680,8 +636,8 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="2">
-        <widget class="QPushButton" name="pushButton_0_1">
+       <item row="2" column="7">
+        <widget class="QPushButton" name="pushButton_0_2">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -690,19 +646,138 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>72</pointsize>
+           <family>Gill Sans MT</family>
+           <pointsize>62</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>X</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="7">
+        <widget class="QPushButton" name="pushButton_2_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Gill Sans MT</family>
+           <pointsize>62</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>X</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="7">
+        <widget class="Line" name="line_9">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>3</number>
+         </property>
+         <property name="midLineWidth">
+          <number>4</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="7">
+        <widget class="Line" name="line_12">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>3</number>
+         </property>
+         <property name="midLineWidth">
+          <number>4</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="Line" name="line_2">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>3</number>
+         </property>
+         <property name="midLineWidth">
+          <number>4</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="3">
+        <widget class="QPushButton" name="pushButton_2_1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Gill Sans MT</family>
+           <pointsize>62</pointsize>
           </font>
          </property>
          <property name="text">
@@ -723,19 +798,20 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>72</pointsize>
+           <family>Gill Sans MT</family>
+           <pointsize>62</pointsize>
           </font>
          </property>
          <property name="layoutDirection">
@@ -752,21 +828,24 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
-        <widget class="Line" name="line_3">
+       <item row="6" column="6">
+        <widget class="Line" name="line_4">
          <property name="frameShadow">
           <enum>QFrame::Plain</enum>
          </property>
          <property name="lineWidth">
           <number>3</number>
          </property>
+         <property name="midLineWidth">
+          <number>4</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
-       <item row="6" column="6">
-        <widget class="QPushButton" name="pushButton_2_2">
+       <item row="2" column="3">
+        <widget class="QPushButton" name="pushButton_0_1">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -775,36 +854,56 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>72</pointsize>
+           <family>Gill Sans MT</family>
+           <pointsize>62</pointsize>
           </font>
          </property>
          <property name="text">
-          <string>X</string>
+          <string>O</string>
          </property>
          <property name="flat">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="2" column="3">
+       <item row="2" column="6">
         <widget class="Line" name="line_6">
          <property name="frameShadow">
           <enum>QFrame::Plain</enum>
          </property>
          <property name="lineWidth">
           <number>3</number>
+         </property>
+         <property name="midLineWidth">
+          <number>4</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="Line" name="line_3">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>3</number>
+         </property>
+         <property name="midLineWidth">
+          <number>4</number>
          </property>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -819,8 +918,47 @@
          <property name="lineWidth">
           <number>3</number>
          </property>
+         <property name="midLineWidth">
+          <number>4</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QPushButton" name="pushButton_1_1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Gill Sans MT</family>
+           <pointsize>62</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>X</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -832,30 +970,39 @@
          <property name="lineWidth">
           <number>3</number>
          </property>
+         <property name="midLineWidth">
+          <number>4</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
-       <item row="5" column="6">
-        <widget class="Line" name="line_12">
+       <item row="4" column="6">
+        <widget class="Line" name="line_5">
          <property name="frameShadow">
           <enum>QFrame::Plain</enum>
          </property>
          <property name="lineWidth">
           <number>3</number>
          </property>
+         <property name="midLineWidth">
+          <number>4</number>
+         </property>
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
-       <item row="3" column="6">
-        <widget class="Line" name="line_9">
+       <item row="5" column="3">
+        <widget class="Line" name="line_11">
          <property name="frameShadow">
           <enum>QFrame::Plain</enum>
          </property>
          <property name="lineWidth">
+          <number>3</number>
+         </property>
+         <property name="midLineWidth">
           <number>4</number>
          </property>
          <property name="orientation">
@@ -863,72 +1010,35 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="pushButton_0_0">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+       <item row="3" column="0">
+        <widget class="Line" name="line_7">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
          </property>
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>100</height>
-          </size>
+         <property name="lineWidth">
+          <number>3</number>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>100</height>
-          </size>
+         <property name="midLineWidth">
+          <number>4</number>
          </property>
-         <property name="font">
-          <font>
-           <pointsize>72</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>X</string>
-         </property>
-         <property name="checkable">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
-       <item row="6" column="2">
-        <widget class="QPushButton" name="pushButton_2_1">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+       <item row="3" column="3">
+        <widget class="Line" name="line_8">
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
          </property>
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>100</height>
-          </size>
+         <property name="lineWidth">
+          <number>3</number>
          </property>
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>100</height>
-          </size>
+         <property name="midLineWidth">
+          <number>4</number>
          </property>
-         <property name="font">
-          <font>
-           <pointsize>72</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>O</string>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -942,19 +1052,22 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>72</pointsize>
+           <family>Gill Sans MT</family>
+           <pointsize>62</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="text">
@@ -965,37 +1078,8 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="2">
-        <widget class="Line" name="line_11">
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="lineWidth">
-          <number>3</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="Line" name="line_2">
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="lineWidth">
-          <number>3</number>
-         </property>
-         <property name="midLineWidth">
-          <number>10</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="6">
-        <widget class="QPushButton" name="pushButton_0_2">
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButton_0_0">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -1004,72 +1088,30 @@
          </property>
          <property name="minimumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>100</width>
-           <height>100</height>
+           <width>80</width>
+           <height>80</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>72</pointsize>
+           <family>Gill Sans MT</family>
+           <pointsize>62</pointsize>
           </font>
          </property>
          <property name="text">
           <string>X</string>
          </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="2">
-        <widget class="QPushButton" name="pushButton_1_1">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>100</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>100</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>72</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>X</string>
+         <property name="checkable">
+          <bool>false</bool>
          </property>
          <property name="flat">
           <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="Line" name="line_7">
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="lineWidth">
-          <number>3</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -1083,12 +1125,23 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>332</width>
+     <width>291</width>
      <height>20</height>
     </rect>
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>pushButton_0_0</tabstop>
+  <tabstop>pushButton_0_1</tabstop>
+  <tabstop>pushButton_0_2</tabstop>
+  <tabstop>pushButton_1_0</tabstop>
+  <tabstop>pushButton_1_1</tabstop>
+  <tabstop>pushButton_1_2</tabstop>
+  <tabstop>pushButton_2_0</tabstop>
+  <tabstop>pushButton_2_1</tabstop>
+  <tabstop>pushButton_2_2</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
