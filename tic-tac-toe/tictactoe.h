@@ -6,24 +6,28 @@ class TicTacToe
 {
 public:
     TicTacToe();
-
-private:
-    enum class GameStatus {
-        CONTINUES, DRAW, WON
+    enum Board {
+        SIZE = 3,
+        AREA = SIZE * SIZE,
+        MINROUNDS = SIZE * 2 - 1
     };
     enum class Marker : char {
         BLANK = ' ', X = 'X', O = 'O'
     };
+    enum class GameStatus {
+        CONTINUES, DRAW, WON
+    };
 
-    static const int BOARDSIZE {3};
-    static const int BOARDAREA {BOARDSIZE * BOARDSIZE};
-    static const int MINROUNDS {BOARDSIZE * 2 - 1};
-    Marker board[BOARDSIZE][BOARDSIZE];
+    Marker get(int row, int col);
+    Marker move(int row, int col);
+    GameStatus checkBoard();
+    Marker getPlayerMarker();
+    
+private:
+    Marker board[Board::SIZE][Board::SIZE];
     int round;
     bool player;
 
-    void init();
-    GameStatus checkBoard();
     bool isCrossedHorizontally(int row);
     bool isCrossedVertically(int col);
     bool isCrossedDiagonally();

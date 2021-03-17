@@ -2,18 +2,34 @@
 #include <QPushButton>
 #include <algorithm>
 
-TicTacToe::TicTacToe()
-{
-
-}
-
-void TicTacToe::init()
+TicTacToe::TicTacToe() : round(0), player(false)
 {
     for (auto &row : this->board) {
         std::fill(std::begin(row), std::end(row), Marker::BLANK);
     }
-    this->round = 0;
-    this->player = false;
+}
+
+TicTacToe::Marker TicTacToe::get(int row, int col)
+{
+    return this->board[row][col];
+}
+
+TicTacToe::Marker TicTacToe::move(int row, int col)
+{
+    auto &position = this->board[row][col];
+    if (position != Marker::BLANK)
+        return Marker::BLANK;
+
+    ++this->round;
+    this->player = !this->player;
+    position = getPlayerMarker();
+
+    return position;
+}
+
+TicTacToe::Marker TicTacToe::getPlayerMarker()
+{
+    return this->player ? Marker::X : Marker::O;
 }
 
 TicTacToe::GameStatus TicTacToe::checkBoard()
@@ -21,7 +37,7 @@ TicTacToe::GameStatus TicTacToe::checkBoard()
     if (this->round < this->MINROUNDS)
         return GameStatus::CONTINUES;
 
-    for (int i = 0; i < this->BOARDSIZE; ++i) {
+    for (int i = 0; i < this->Board::SIZE; ++i) {
         if (isCrossedHorizontally(i) || isCrossedVertically(i))
             return GameStatus::WON;
     }
@@ -29,7 +45,7 @@ TicTacToe::GameStatus TicTacToe::checkBoard()
     if (isCrossedDiagonally() || isCrossedAntidiagonally())
         return GameStatus::WON;
 
-    return this->round < this->BOARDAREA
+    return this->round < this->Board::AREA
             ? GameStatus::CONTINUES
             : GameStatus::DRAW;
 }
@@ -39,7 +55,7 @@ bool TicTacToe::isCrossedHorizontally(int row)
     if (this->board[row][0] == Marker::BLANK)
         return false;
 
-    for (int i = 0; i < this->BOARDSIZE - 1; ++i) {
+    for (int i = 0; i < this->Board::SIZE - 1; ++i) {
         if (this->board[row][i] != this->board[row][i + 1])
             return false;
     }
@@ -52,7 +68,7 @@ bool TicTacToe::isCrossedVertically(int col)
     if (this->board[0][col] == Marker::BLANK)
         return false;
 
-    for (int i = 0; i < this->BOARDSIZE - 1; ++i) {
+    for (int i = 0; i < this->Board::SIZE - 1; ++i) {
         if (this->board[i][col] != this->board[i + 1][col])
             return false;
     }
@@ -65,7 +81,7 @@ bool TicTacToe::isCrossedDiagonally()
     if (this->board[0][0] == Marker::BLANK)
         return false;
 
-    for (int i = 0; i < this->BOARDSIZE - 1; ++i) {
+    for (int i = 0; i < this->Board::SIZE - 1; ++i) {
         if (this->board[i][i] != this->board[i + 1][i + 1])
             return false;
     }
@@ -75,7 +91,7 @@ bool TicTacToe::isCrossedDiagonally()
 
 bool TicTacToe::isCrossedAntidiagonally()
 {
-    const int n {this->BOARDSIZE - 1};
+    const int n {this->Board::SIZE - 1};
 
     if (this->board[0][n] == Marker::BLANK)
         return false;
