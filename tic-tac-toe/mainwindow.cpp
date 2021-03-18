@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QTimer>
 
+//#define COLORFUL
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -49,6 +51,10 @@ void MainWindow::move(QPushButton *pb, int row, int col)
         return;
 
     pb->setText(QString(static_cast<char>(marker)));
+#ifdef COLORFUL
+    auto style {marker == TicTacToe::Icon::X ? "color: dodgerblue" : "color: red"};
+    pb->setStyleSheet(basicStyle + style);
+#endif
 
     auto status {this->ttt.checkBoard()};
     if (status != TicTacToe::GameStatus::CONTINUES)
@@ -106,17 +112,29 @@ void MainWindow::resetPushButtons()
 
 void MainWindow::highlightRow()
 {
-
+#ifndef COLORFUL
     for (auto &row : this->pushButtons) {
-        for (auto &pb : row)
+        for (auto &pb : row) {
             pb->setStyleSheet(this->basicStyle + "color: lightgrey");
+        }
     }
+#endif
 
     auto cross {this->ttt.getCross()};
     if (cross) {
+#ifdef COLORFUL
+        auto style {
+            this->basicStyle +
+            (ttt.get(cross[0].first, cross[0].second) == TicTacToe::Icon::X
+                    ? "color: dodgerblue; background-color: lightblue"
+                    : "color: red; background-color: lightpink")
+        };
+#else
+        auto style {this->basicStyle};
+#endif
         for (int i {0}; i < TicTacToe::Board::SIZE; ++i) {
             auto [row, col] {cross[i]};
-            pushButtons[row][col]->setStyleSheet(this->basicStyle);
+            pushButtons[row][col]->setStyleSheet(style);
         }
     }
 }
