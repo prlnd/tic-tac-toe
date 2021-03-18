@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QThread>
-#include <QMessageBox>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -42,13 +41,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::move(QPushButton *pb, int row, int col)
 {
-    auto marker {ttt.move(row, col)};
+    if (isStopped)
+        return;
+
+    auto marker {this->ttt.move(row, col)};
     if (marker == TicTacToe::Icon::BLANK)
         return;
 
     pb->setText(QString(static_cast<char>(marker)));
 
-    auto status {ttt.checkBoard()};
+    auto status {this->ttt.checkBoard()};
     if (status != TicTacToe::GameStatus::CONTINUES)
         finish(status);
     else
@@ -57,27 +59,30 @@ void MainWindow::move(QPushButton *pb, int row, int col)
 
 void MainWindow::start()
 {
-    ttt = TicTacToe();
+    this->ttt = TicTacToe();
+    isStopped = false;
     resetPushButtons();
     highlightPlayer(this->ttt.getNextPlayerIcon());
 }
 
 void MainWindow::finish(TicTacToe::GameStatus status)
 {
+    isStopped = true;
+
     if (status == TicTacToe::GameStatus::WON) {
-        auto marker {ttt.getLastPlayerIcon()};
+        auto marker {this->ttt.getLastPlayerIcon()};
         setScore(marker == TicTacToe::Icon::X
                  ? ui->labelScoreX
                  : ui->labelScoreO);
-        setCrossBold();
         highlightPlayer(this->ttt.getLastPlayerIcon());
     } else {
         highlightPlayer(TicTacToe::Icon::BLANK);
     }
 
-    this->repaint();
-    QThread::msleep(1000);
-    start();
+    highlightRow();
+
+//    this->repaint();
+    QTimer::singleShot(1000, this, &MainWindow::start);
 }
 
 void MainWindow::setScore(QLabel *labelScore)
@@ -91,27 +96,28 @@ void MainWindow::resetPushButtons()
     const auto n {TicTacToe::Board::SIZE};
     for (int i {0}; i < n; ++i) {
         for (int j {0}; j < n; ++j) {
-            auto marker {static_cast<char>(ttt.get(i, j))};
+            auto marker {static_cast<char>(this->ttt.get(i, j))};
             auto &pb {pushButtons[i][j]};
             pb->setText(QString(marker));
-            pb->setStyleSheet("");
+            pb->setStyleSheet(this->basicStyle);
         }
     }
 }
 
-void MainWindow::setCrossBold()
+void MainWindow::highlightRow()
 {
-    auto cross {ttt.getCross()};
 
     for (auto &row : this->pushButtons) {
         for (auto &pb : row)
-            pb->setStyleSheet("color: lightgrey");
+            pb->setStyleSheet(this->basicStyle + "color: lightgrey");
     }
 
-    for (int i {0}; i < TicTacToe::Board::SIZE; ++i) {
-        auto row {cross[i][0]};
-        auto col {cross[i][1]};
-        pushButtons[row][col]->setStyleSheet("");
+    auto cross {this->ttt.getCross()};
+    if (cross) {
+        for (int i {0}; i < TicTacToe::Board::SIZE; ++i) {
+            auto [row, col] {cross[i]};
+            pushButtons[row][col]->setStyleSheet(this->basicStyle);
+        }
     }
 }
 
@@ -121,14 +127,20 @@ void MainWindow::highlightPlayer(TicTacToe::Icon icon)
     case TicTacToe::Icon::X:
         ui->labelX->setStyleSheet("");
         ui->labelO->setStyleSheet("color: grey");
+        ui->labelScoreX->setStyleSheet("");
+        ui->labelScoreO->setStyleSheet("color: grey");
         break;
     case TicTacToe::Icon::O:
         ui->labelX->setStyleSheet("color: grey");
         ui->labelO->setStyleSheet("");
+        ui->labelScoreX->setStyleSheet("color: grey");
+        ui->labelScoreO->setStyleSheet("");
         break;
     default:
         ui->labelX->setStyleSheet("color: grey");
         ui->labelO->setStyleSheet("color: grey");
+        ui->labelScoreX->setStyleSheet("color: grey");
+        ui->labelScoreO->setStyleSheet("color: grey");
         break;
     }
 }

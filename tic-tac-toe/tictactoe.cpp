@@ -6,8 +6,8 @@ TicTacToe::TicTacToe() : round(0), player(false)
     for (auto &row : this->board) {
         std::fill(std::begin(row), std::end(row), Icon::BLANK);
     }
-    for (auto &row : this->cross) {
-        std::fill(std::begin(row), std::end(row), -1);
+    for (auto &p : this->cross) {
+        p = {-1, -1};
     }
 }
 
@@ -39,9 +39,9 @@ TicTacToe::Icon TicTacToe::getNextPlayerIcon()
     return this->player ? Icon::O : Icon::X;
 }
 
-const int (*TicTacToe::getCross())[2]
+const std::pair<int, int> *TicTacToe::getCross()
 {
-    return this->cross;
+    return this->cross->first >= 0 ? this->cross : nullptr;
 }
 
 TicTacToe::GameStatus TicTacToe::checkBoard()
@@ -73,8 +73,7 @@ bool TicTacToe::isCrossedHorizontally(int row)
     }
 
     for (int i {0}; i < this->Board::SIZE; ++i) {
-        this->cross[i][0] = row;
-        this->cross[i][1] = i;
+        this->cross[i] = {row, i};
     }
 
     return true;
@@ -91,8 +90,7 @@ bool TicTacToe::isCrossedVertically(int col)
     }
 
     for (int i {0}; i < this->Board::SIZE; ++i) {
-        this->cross[i][0] = i;
-        this->cross[i][1] = col;
+        this->cross[i] = {i, col};
     }
 
     return true;
@@ -109,8 +107,7 @@ bool TicTacToe::isCrossedDiagonally()
     }
 
     for (int i {0}; i < this->Board::SIZE; ++i) {
-        this->cross[i][0] = i;
-        this->cross[i][1] = i;
+        this->cross[i] = {i, i};
     }
 
     return true;
@@ -129,8 +126,7 @@ bool TicTacToe::isCrossedAntidiagonally()
     }
 
     for (int i {0}; i < this->Board::SIZE; ++i) {
-        this->cross[i][0] = i;
-        this->cross[i][1] = n - i;
+        this->cross[i] = {i, n - i};
     }
 
     return true;

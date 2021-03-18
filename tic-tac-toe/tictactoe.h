@@ -1,6 +1,7 @@
 #ifndef TICTACTOE_H
 #define TICTACTOE_H
 
+#include <utility>
 
 class TicTacToe
 {
@@ -23,13 +24,13 @@ public:
     GameStatus checkBoard();
     Icon getLastPlayerIcon();
     Icon getNextPlayerIcon();
-    const int (*getCross())[2];
+    const std::pair<int, int>* getCross();
     
 private:
     Icon board[Board::SIZE][Board::SIZE];
     int round;
     bool player;
-    int cross[Board::SIZE][2];
+    std::pair<int, int> cross[Board::SIZE];
 
     bool isCrossedHorizontally(int row);
     bool isCrossedVertically(int col);

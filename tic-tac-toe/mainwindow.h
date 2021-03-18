@@ -18,17 +18,21 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void start();
+
 private:
+    const QString basicStyle {"background-color: white; border: none;"};
     TicTacToe ttt;
     QPushButton *pushButtons[TicTacToe::Board::SIZE][TicTacToe::Board::SIZE];
+    bool isStopped;
 
     Ui::MainWindow *ui;
     void move(QPushButton *pb, int row, int col);
-    void start();
     void finish(TicTacToe::GameStatus status);
     void setScore(QLabel *labelScore);
     void resetPushButtons();
-    void setCrossBold();
+    void highlightRow();
     void highlightPlayer(TicTacToe::Icon icon);
 };
 #endif // MAINWINDOW_H
