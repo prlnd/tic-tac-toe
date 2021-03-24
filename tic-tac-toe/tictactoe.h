@@ -24,7 +24,7 @@ public:
     GameStatus checkBoard();
     Icon getLastPlayerIcon();
     Icon getNextPlayerIcon();
-    const std::pair<int, int>* getCross();
+    const std::pair<int, int> *getCross();
     
 private:
     Icon board[Board::SIZE][Board::SIZE];

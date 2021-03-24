@@ -22,10 +22,12 @@ private slots:
     void start();
 
 private:
+#define ALPAKA 1
     const QString basicStyle {"background-color: white; border: none;"};
     TicTacToe ttt;
     QPushButton *pushButtons[TicTacToe::Board::SIZE][TicTacToe::Board::SIZE];
     bool isStopped;
+    const int freezetime {1000};
 
     Ui::MainWindow *ui;
     void move(QPushButton *pb, int row, int col);

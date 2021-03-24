@@ -10,13 +10,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("Tic-Tac-Toe");
+    this->setMaximumSize(222, 273);
 
     int count {0};
     for (auto &pb : {
          ui->pushButton_0_0, ui->pushButton_0_1, ui->pushButton_0_2,
          ui->pushButton_1_0, ui->pushButton_1_1, ui->pushButton_1_2,
          ui->pushButton_2_0, ui->pushButton_2_1, ui->pushButton_2_2
-}) {
+    }) {
         int row {count / TicTacToe::Board::SIZE};
         int col {count % TicTacToe::Board::SIZE};
         this->pushButtons[row][col] = pb;
@@ -88,7 +89,7 @@ void MainWindow::finish(TicTacToe::GameStatus status)
     highlightRow();
 
 //    this->repaint();
-    QTimer::singleShot(1000, this, &MainWindow::start);
+    QTimer::singleShot(this->freezetime, this, &MainWindow::start);
 }
 
 void MainWindow::setScore(QLabel *labelScore)
@@ -141,24 +142,42 @@ void MainWindow::highlightRow()
 
 void MainWindow::highlightPlayer(TicTacToe::Icon icon)
 {
+#ifdef COLORFUL
+    auto styleX {"color: dodgerblue"};
+    auto styleO {"color: red"};
+    const auto P1 {TicTacToe::Icon::O};
+    const auto P2 {TicTacToe::Icon::X};
+#else
+    auto styleX {"color: grey"};
+    auto styleO {"color: grey"};
+    const auto P1 {TicTacToe::Icon::X};
+    const auto P2 {TicTacToe::Icon::O};
+#endif
     switch (icon) {
-    case TicTacToe::Icon::X:
+    case P1:
         ui->labelX->setStyleSheet("");
-        ui->labelO->setStyleSheet("color: grey");
+        ui->labelO->setStyleSheet(styleO);
         ui->labelScoreX->setStyleSheet("");
-        ui->labelScoreO->setStyleSheet("color: grey");
+        ui->labelScoreO->setStyleSheet(styleO);
         break;
-    case TicTacToe::Icon::O:
-        ui->labelX->setStyleSheet("color: grey");
+    case P2:
+        ui->labelX->setStyleSheet(styleX);
         ui->labelO->setStyleSheet("");
-        ui->labelScoreX->setStyleSheet("color: grey");
+        ui->labelScoreX->setStyleSheet(styleX);
         ui->labelScoreO->setStyleSheet("");
         break;
     default:
-        ui->labelX->setStyleSheet("color: grey");
-        ui->labelO->setStyleSheet("color: grey");
-        ui->labelScoreX->setStyleSheet("color: grey");
-        ui->labelScoreO->setStyleSheet("color: grey");
+#ifdef COLORFUL
+        ui->labelX->setStyleSheet("");
+        ui->labelO->setStyleSheet("");
+        ui->labelScoreX->setStyleSheet("");
+        ui->labelScoreO->setStyleSheet("");
+#else
+        ui->labelX->setStyleSheet(styleX);
+        ui->labelO->setStyleSheet(styleO);
+        ui->labelScoreX->setStyleSheet(styleX);
+        ui->labelScoreO->setStyleSheet(styleO);
+#endif
         break;
     }
 }

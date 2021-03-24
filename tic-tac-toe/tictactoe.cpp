@@ -6,9 +6,7 @@ TicTacToe::TicTacToe() : round(0), player(false)
     for (auto &row : this->board) {
         std::fill(std::begin(row), std::end(row), Icon::BLANK);
     }
-    for (auto &p : this->cross) {
-        p = {-1, -1};
-    }
+    std::fill(std::begin(this->cross), std::end(this->cross), std::make_pair(-1, -1));
 }
 
 TicTacToe::Icon TicTacToe::get(int row, int col)
@@ -22,9 +20,9 @@ TicTacToe::Icon TicTacToe::move(int row, int col)
     if (position != Icon::BLANK)
         return Icon::BLANK;
 
+    position = getNextPlayerIcon();
     ++this->round;
     this->player = !this->player;
-    position = getLastPlayerIcon();
 
     return position;
 }
